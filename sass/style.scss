@@ -28,20 +28,43 @@ img {
   height: auto;
 }
 
-.inner {
-  display: block;
+
+//共通
+
+.container{
   width: 100%;
+  height: 100%;
   max-width: 980px;
+  padding-right: 20px;
+  padding-left: 20px;
+  margin-right: auto;
   margin-left: auto;
-  margin-right: auto; 
+
+  @media screen and (max-width: 767px)  {
+    .container {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
+  }
   
+}
+
+.section-title {
+  text-align: center;
+  font-size: 40px;
+  padding-top: 91px;
+
   @include mq(sp) {
-    padding-left: 15px;
-    padding-right: 15px;
+    font-size: 26px;
+    padding-top: 67px;
   }
 }
 
-//conceptタイトル
+
+
+
+
+
 
 //ヘッダー//
 .header {
@@ -53,8 +76,9 @@ img {
     
 }
 
-.header-inner {
-  height: 60px;
+header .container {
+  max-width: 980px;
+  margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -73,50 +97,99 @@ img {
 }
 .header-nav {
   display: flex;
+  justify-content: space-between;
+  gap: 38px;
+  font-size: 18px;
 
   
 }
+
 .header-nav-list {
-  margin-right: 38px;
+  list-style: none;
+  //margin-right: 38px;
 }
 .header-nav-list:nth-last-child(1) {
   margin-right: 0;
 }
 .header-nav-list a {
   font-size: 18px;
+
+  @include mq(sp) {
+    font-size: 14px;
+  }
 }
 
 //fv
 .fv {
+  
 
 }
 
 
 .fv__inner {
+  height: 605px;
+  background-image: url(../img/mainvisual.png);
+  background-size: cover;
+  background-position: center center;
   position: relative;
+
+  @include mq(sp) {
+    background-image: url(../img/mainvisual-sp.png);
+
+  }
+  
 }
 
-.fv__image {
-  width: 100%;
-  display: block;
-}
 .fv__logo {
   position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 100px; 
+    width: 150px; 
+
+    
 }
+
+//concept
+.concept .container {
+  text-align: center;
+  margin-top: 96px;
+  padding-bottom: 89px;
+}
+
+
+.concept__title {
+  font-size: 32px;
+  font-weight: bold;
+
+  @include mq(sp) {
+    font-size: 20px;
+  }
+}
+.concept__text {
+  font-size: 20px;
+  padding-top: 45px;
+  line-height: 1.7;
+  @include mq(sp) {
+    font-size: 14px;
+    padding-top: 38px;
+  }
+
+}
+
+
 
 //dog1
 
-.dog1 {
+.dog1 .container {
   background-color: #F9F9F9;
-}
-
-.dog1__inner {
+  padding-bottom: 99px;
   
 }
+
+ 
+
+
 .dog1-content {
   text-align: center;
   margin-top: 92px;
@@ -168,4 +241,99 @@ height: 278px;
   @include mq(sp) {
     padding-top: 30px;
   }
+}
+
+//dog2
+.dog2 .container {
+  padding-bottom: 100px;
+  text-align: center;
+}
+
+.dog2-content {
+  padding-top: 59px;
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+
+}
+.dog2-img {
+  max-width: 100%;
+  
+}
+.dog2-text-area {
+  padding-top: 32px;
+}
+.dog2-text {
+  font-size: 16px;
+}
+
+//dog-bg
+
+.dog-bg .container {
+  height: 431px;
+  max-width: 100%;
+  background-image: url(../img/dog_bg_01.png);
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+
+  @include mq(sp) {
+    background-image: url(../img/dog_bg_sp.png);
+
+  }
+
+}
+.dog-bg__inner {
+  max-width: 980px;
+}
+.dog-bg-text p {
+  text-align: center;
+  color: #FFFFFF;
+  font-size: 18px;
+}
+
+
+
+//dog3
+.dog3 .container {
+  padding-bottom: 100px;
+}
+
+.button {
+  font-size: 18px;
+  background-color: #AE0009;
+  color: #FFFFFF;
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 7px;
+  padding-bottom: 9px;
+  width: 126px;
+  line-height: 1;
+  
+}
+
+//footer 
+
+.history {
+background-color: #AFAFAF;
+}
+.history .container {
+  max-width: 100%;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.history-text {
+
+}
+
+.history-title {
+  
+}
+
+.footer__copyright {
+  background-color: #797979;
+  text-align: center;
+  height: 49px;
+  color: #FFFFFF;
 }
