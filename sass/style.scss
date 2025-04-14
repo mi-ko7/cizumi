@@ -1,7 +1,12 @@
 @use "sass:map";
 
 $breakpoints: (
-  sp: "not screen and (min-width: 768px)",
+  pc: "screen and (min-width: 980px)",
+  // PC
+  tab: "screen and (max-width: 979px)",
+  // タブレット（スマホ除く）
+  sp: "screen and (max-width: 767px)",
+  // スマホ
 );
 
 @mixin mq($breakpoint: pc) {
@@ -11,16 +16,17 @@ $breakpoints: (
 }
 
 $font-base: "Inter", sans-serif;
-$text-color:#333333;
+$text-color: #333333;
+$d1-box-width: 450px;
 
 body {
-    font-family: $font-base;
-    color: $text-color;
-    font-size: 16px;
-    line-height: 1;
-    font-weight: 400;
+  font-family: $font-base;
+  color: $text-color;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 400;
 
-    
+
 }
 
 img {
@@ -29,25 +35,24 @@ img {
 }
 
 
+
+
 //共通
 
-.container{
+.container {
   width: 100%;
-  height: 100%;
   max-width: 980px;
-  padding-right: 20px;
-  padding-left: 20px;
-  margin-right: auto;
-  margin-left: auto;
+  padding: 0 20px;
+  margin: 0 auto;
 
-  @media screen and (max-width: 767px)  {
-    .container {
-      padding-right: 15px;
-      padding-left: 15px;
-    }
+
+  @include mq(tab) {
+    max-width: 100%;
+    padding: 0 15px;
   }
-  
 }
+
+
 
 .section-title {
   text-align: center;
@@ -68,12 +73,12 @@ img {
 
 //ヘッダー//
 .header {
-    height: 60px;
+  height: 60px;
 
-    @include mq(sp) {
-      height: 50px;
-    }
-    
+  @include mq(sp) {
+    height: 50px;
+  }
+
 }
 
 header .container {
@@ -95,35 +100,39 @@ header .container {
   }
 
 }
-.header-nav {
-  display: flex;
-  justify-content: space-between;
-  gap: 38px;
-  font-size: 18px;
 
-  
-}
 
 .header-nav-list {
+  display: flex;
+  gap: 38px; // リンク間のスペース
   list-style: none;
-  //margin-right: 38px;
+  margin: 0;
+  padding: 0;
+
+  @include mq(sp) {
+    gap: 16px;
+    font-size: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
+
 .header-nav-list:nth-last-child(1) {
   margin-right: 0;
 }
+
 .header-nav-list a {
   font-size: 18px;
 
   @include mq(sp) {
+
+
     font-size: 14px;
   }
 }
 
 //fv
-.fv {
-  
-
-}
+.fv {}
 
 
 .fv__inner {
@@ -137,17 +146,17 @@ header .container {
     background-image: url(../img/mainvisual-sp.png);
 
   }
-  
+
 }
 
 .fv__logo {
   position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 150px; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
 
-    
+
 }
 
 //concept
@@ -160,16 +169,17 @@ header .container {
 
 .concept__title {
   font-size: 32px;
-  font-weight: bold;
 
   @include mq(sp) {
     font-size: 20px;
   }
 }
+
 .concept__text {
   font-size: 20px;
   padding-top: 45px;
   line-height: 1.7;
+
   @include mq(sp) {
     font-size: 14px;
     padding-top: 38px;
@@ -181,116 +191,281 @@ header .container {
 
 //dog1
 
-.dog1 .container {
+.dog1 {
   background-color: #F9F9F9;
-  padding-bottom: 99px;
-  
+
 }
 
- 
+.dog1 .container {
+  padding-bottom: 50px;
+
+}
+
+
 
 
 .dog1-content {
-  text-align: center;
+
   margin-top: 92px;
   margin-bottom: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
 
   @include mq(sp) {
+    margin-top: 60px;
+    gap: 40px;
+    margin-bottom: 0;
   }
 
 }
 
 .section-title {
   font-size: 40px;
+  text-align: center;
 
   @include mq(sp) {
     font-size: 26px;
   }
 }
-.dog1-img {
-text-align: center;
-width: 450px;
-height: 278px;
 
-@include mq(sp) {
-  width: 345px;
-  height: 213px;
+.dog1-box {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 70px;
+
+  @include mq(sp) {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 76px;
+  }
 }
+
+.dog1-box.reverse {
+  flex-direction: row-reverse;
+
+  @include mq(sp) {
+    flex-direction: column;
+  }
+}
+
+.dog1-img {
+
+  width: $d1-box-width;
+  height: auto;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    display: block;
+
+  }
+
+  @include mq(sp) {
+    width: 345px;
+    height: auto;
+  }
 }
 
 .dog1-text-area {
+  width: $d1-box-width;
+
+  @include mq(sp) {
+    width: 100%;
+    text-align: left;
+  }
 
 }
+
 .dog1-text-title {
   font-size: 26px;
   border-bottom: 3px #AE0009 solid;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: center;
+  padding-bottom: 8px;
+  text-align: center;
+  margin-bottom: 30px;
+
 
   @include mq(sp) {
+    text-align: left;
+    white-space: nowrap;
     font-size: 20px;
+    margin-bottom: 18px;
   }
+
+
 }
 
 .dog1-text {
   font-size: 18px;
-  padding-top: 42px;
 
   @include mq(sp) {
-    padding-top: 30px;
+    font-size: 16px;
   }
 }
 
 //dog2
 .dog2 .container {
   padding-bottom: 100px;
-  text-align: center;
 }
 
 .dog2-content {
-  padding-top: 59px;
+
   display: flex;
   justify-content: space-between;
   gap: 48px;
+  flex-wrap: nowrap;
+  padding-top: 59px;
+
+  @include mq(sp) {
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+  }
 
 }
+
+.dog2-box {
+  flex: 1;
+  min-width: 280px;
+  max-width: 32%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .dog2-img {
   max-width: 100%;
-  
+  height: auto;
+  display: block;
+
 }
+
 .dog2-text-area {
   padding-top: 32px;
-}
+  width: 100%;
+
+  @include mq(sp) {
+    padding-top: 20px;
+  }
+  }
+
+
 .dog2-text {
   font-size: 16px;
+  text-align: left;
 }
 
 //dog-bg
 
-.dog-bg .container {
-  height: 431px;
+.dog-bg {
+  position: relative;
+  height: 460px;
   max-width: 100%;
   background-image: url(../img/dog_bg_01.png);
   background-size: cover;
   background-position: center center;
-  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+
+  @include mq(tab) {
+    padding: 60px 20px;
+    justify-content: center;
+  }
 
   @include mq(sp) {
+
     background-image: url(../img/dog_bg_sp.png);
+    background-size: 170%;
+    background-position: center center;
+    padding: 0 15px;
+    height: 352px;
+    margin-bottom: 134px;
+
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(22, 22, 22, 0.3);
+      z-index: 1;
+      pointer-events: none;
+    }
 
   }
 
 }
+
+
+
 .dog-bg__inner {
+  width: 100%;
   max-width: 980px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 60px 20px;
+  margin: 0 auto;
+
+  @include mq(tab) {
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  @include mq(sp) {
+    justify-content: flex-start;
+    flex-direction: column;
+    padding: 0;
+  }
 }
-.dog-bg-text p {
-  text-align: center;
+
+
+
+.dog-bg-text {
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
   color: #FFFFFF;
-  font-size: 18px;
+  z-index: 2;
+
+  @include mq(sp) {
+    width: 100%;              // 横幅いっぱい
+    box-sizing: border-box;   // paddingを含めるように
+    margin: 0;
+    padding-top: 103px;
+  }
+
+  p {
+
+
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 24px;
+
+
+    @include mq(sp) {
+      font-size: 14px;
+      text-align: left;
+      margin-bottom: 75px;
+      
+
+      &:first-of-type {
+        margin-bottom: 40px;
+      }
+    }
+  }
+
 }
+
+
+
 
 
 
@@ -299,41 +474,153 @@ height: 278px;
   padding-bottom: 100px;
 }
 
-.button {
-  font-size: 18px;
-  background-color: #AE0009;
-  color: #FFFFFF;
-  text-align: center;
-  margin-top: 40px;
-  padding-top: 7px;
-  padding-bottom: 9px;
-  width: 126px;
-  line-height: 1;
-  
+.dog3 .section-title {
+  margin-bottom: 72px;
+
+  @include mq(sp) {
+    margin-bottom: 20px;
+    padding: 0;
+  }
+
 }
+
+.dog3__news {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 10px;
+  padding-bottom: 10px;
+  flex-wrap: wrap;
+
+
+  border-bottom: 1px solid #777777;
+
+
+
+
+  &.first {
+    border-top: 1px solid #777777;
+    padding-top: 10px;
+  }
+
+}
+
+
+.date-title {
+  font-size: 14px;
+  white-space: nowrap;
+  color: #333333;
+}
+
+.dog3 h4 {
+  font-size: 12px;
+  background-color: #fff;
+  color: #AE0009;
+  padding: 5px 26px;
+  border: 1px solid #AE0009;
+  white-space: nowrap;
+  margin: 0 36px;
+
+  @include mq(sp) {
+    margin: 0 26px;
+  }
+
+
+}
+
+.button {
+  display: block;
+  width: fit-content;
+  margin: 30px auto 0;
+  background-color: #AE0009;
+  color: #fff;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: #c0392b;
+  }
+}
+
 
 //footer 
 
-.history {
-background-color: #AFAFAF;
-}
-.history .container {
-  max-width: 100%;
-  text-align: center;
-  color: #FFFFFF;
-}
+.footer {
+  background-color: #AFAFAF; // グレー背景
+  padding-top: 57px;
+  color: #fff;
 
-.history-text {
+  .container {
+    max-width: 980px;
+    margin: 0 auto;
+    padding: 0 20px;
+    padding-bottom: 80px;
 
-}
+    @include mq(sp) {
+      padding-bottom: 42px;
+    }
+  }
 
-.history-title {
-  
-}
+  .footer-lists {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 20px;
 
-.footer__copyright {
-  background-color: #797979;
-  text-align: center;
-  height: 49px;
-  color: #FFFFFF;
+
+    @include mq(sp) {
+      flex-direction: column;
+      gap: 28px;
+    }
+  }
+
+  .footer-list {
+    flex: 1;
+    min-width: 250px;
+
+    h4 {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #fff;
+      background: none;
+      padding-bottom: 5px;
+      border-bottom: 1px solid #fff;
+
+      @include mq(sp) {
+        font-size: 14px;
+      }
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 20px;
+
+      li {
+        font-size: 14px;
+        line-height: 1.6;
+        color: #fff;
+        background-color: transparent; // ← 赤背景を消す
+        margin-bottom: 5px;
+
+        @include mq(sp) {
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .footer__copyright {
+    background-color: #797979;
+    text-align: center;
+    font-size: 12px;
+    color: #fff;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
 }
